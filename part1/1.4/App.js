@@ -16,21 +16,41 @@ const App = () => {
       exercises: 14
     }
   ]
-  const l=parts.map(p=>{
-    return(<p>{p.name} {p.exercises}</p>)
-  })
-  let c=0
-  for(const i of parts){
-      c+=i.exercises
-  }
+  
+  
 
   return (
     <div>
-      <h1>{course}</h1>
-      {l}
-      <p>No:Of:Exercises:{c}</p>
+     <Header course={course} />
+      <Content parts={parts}/>
+      <Total parts={parts}/>
     </div>
+  )
+}
+const Header=c=>{
+  return(
+    <h1>{c.course}</h1>
+  )
+}
+const Content=(props)=>{
+  const l=props.parts
+  const L=l.map((p)=>{
+    return(<p>{p.name} {p.exercises}</p>)
+      }
+    )
+    return(<div>{L}</div>)
+}
+const Total=(props)=>{
+  const l=props.parts
+  let c=0
+  for(const i of l){
+    c+=i.exercises
+  }
+  return(
+    <p>No:Of:Exercises:{c}</p>
   )
 }
 
 export default App
+
+
